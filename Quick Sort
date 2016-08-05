@@ -10,66 +10,59 @@
 #include <iostream>
 using namespace std;
 
-void swap(int * a , int* b){
-int t = *a;
-*a = *b;
-*b = t;
+void swap(int *a, int *b){
+   int t = *a;
+   *a = *b;
+   *b = t;
+   }
+
+int partition(int arr[],int left, int right){ 
+      int i = (left-1); 
+      int pivot = arr[right];
+
+for(int j = left ; j <= (right-1) ; j++ ){
+
+if( arr[j] <= pivot ){
+i++;
+swap(&arr[i],&arr[j]);
 }
-int partition(int a[],int left,int right){
 
-int pivot = a[right];
-int i = left - 1;
-
-for(int j = left; j <= right-1; j++)
-{
-if(a[j]<=pivot){
-    i++;
-    swap(&a[i],&a[j]);
 }
-
-swap(&a[i+1],&a[right]);
+swap(&arr[i+1],&arr[right]);
 return (i+1);
 }
+
+int quick_sort(int arr[], int left , int right){
+
+if(left < right){
+    int q = partition(arr,left,right);
+    quick_sort(arr,left,q-1);
+     quick_sort(arr,q+1,right);
+}
 }
 
-void quicksort(int arr[],int left,int right){
-
-if(left < right ){
-
-int    q = partition(arr,left,right);
-    quicksort(arr,left,right-1);
-    quicksort(arr,left+1,right);
+void print(int arr[],int n) {
+for(int i = 0 ; i <= n ; i++){
+cout <<arr[i]<<" ";
 }
 
-
 }
-void printArray(int arr[], int size)
-{
-    int i;
-    for (i=0; i < size; i++)
-       cout << arr[i]<<" ";
 
-}
 int main(){
-
-int i,s,b;
-cout <<" How many test cases you would like to add ? ";
-cin >> b;
-for(int s = 1; s<=b;s++){
-cout << " How many elements you would like to add ?";
-cin  >> i;
-int arr[i];
-
-cout << " Enter the elements - >";
-
-for(int j = 0; j <= i-1; j++){
-cin >> arr[j];
+int a;
+cout << "Enter the no of the element you want to sort";
+cin  >> a;
+int arr[a];
+for(int i = 0 ; i <= a ; i++){
+        cout<<"Enter element no " << i << " : ";
+cin >> arr[i];
 }
 
+quick_sort(arr,0,a);
 int n = (sizeof(arr)/sizeof(arr[0]));
-quicksort(arr,0,n-1);
+print(arr,n);
+return 0;
 
-    printArray(arr, n);
 }
- return 0;
-}
+
+
