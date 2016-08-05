@@ -1,0 +1,52 @@
+/* Time complexity ( wrost case) = O(n^n)
+   Implementation :
+   
+1) Create an empty sorted (or result) list
+2) Traverse the given list, do following for every node.
+......a) Insert current node in sorted way in sorted or result list.
+3) Change head of given linked list to head of sorted (or result) list. 
+*/
+-----------------------------------------------------------------------------------------------------------------------------------
+#include <iostream>
+
+using namespace std;
+
+void insertion(int arr[],int d){
+
+    int key,i,j;
+
+    for( i = 2 ; i < d ; i++ )
+    {
+        key = arr[i];
+        j = i - 1;
+
+        while(j >= 0 && arr[j] > key)
+        {
+            arr[j+1] = arr[j];
+            j = j - 1;
+        }
+        arr[j+1] = key;
+    }
+}
+
+void print(int arr[],int n){
+    int i;
+    for( i = 0 ; i < n ; i++)
+    {
+        cout << arr[i] << " ";
+    }
+
+
+}
+int main(){
+
+int arr[] = {12, 11, 13, 5, 6};
+
+int d = sizeof(arr)/sizeof(arr[0]);
+
+insertion(arr,d);
+
+print(arr,d);
+
+return 0;
+}
