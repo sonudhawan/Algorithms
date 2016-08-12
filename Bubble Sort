@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int bubble(){
+int n; 
+cout << " Enter the size of array ? "; cin  >> n ;
+int arr[n];
+for(int k = 0 ; k <= n ; k++){
+cout << "Enter element no at index  " << k << " : " ;
+cin  >> arr[k];
+}
+for(int i = 0 ; i < n  ; ++i)
+        for(int j = 0 ; j <= n - 1   ;++j)
+                if(arr[j] > arr[j+1]){
+                        int t = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = t;
+                        }
+        for(int h = 0 ; h <= n ; h++) 
+            cout  << arr[h] << "  ";
+}
+int main(){
+bubble();
+return 0;
+}
