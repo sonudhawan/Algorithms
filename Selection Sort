@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int bubble(){
+int selection(){
 int n; 
 cout << " Enter the size of array ? "; cin  >> n ;
 int arr[n];
@@ -20,6 +20,6 @@ for(int i = 0 ; i < n  ; ++i)
             cout  << arr[h] << "  ";
 }
 int main(){
-bubble();
+selection();
 return 0;
 }
