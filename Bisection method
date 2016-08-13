@@ -1,0 +1,52 @@
+#include <cmath>
+#include <iostream>
+#include <ctime>
+#include <iomanip>
+#include <cstdlib>
+using namespace std;
+float f (float x)
+{
+    float fx1;
+    fx1 = pow(x,3) + pow(x,2) - (3*x) - 3;
+    return (fx1);
+}
+int main(){
+    system("color 2e");
+    cout.precision(5);
+    cout.setf(ios::fixed);
+double a = 0,b = 0,c;
+int iter = 0,iter_c;
+
+jump : cout << " Enter the initial a ";
+cin  >> a ;
+cout << " Enter the initial b "  ;
+cin  >> b ;
+
+
+if(f(a)*f(b)>0){
+        cout << " try again ";
+        goto jump;
+}
+else{
+cout << endl << "Iter"<<setw(14)<<"a"<<setw(14)<<"b"<<setw(14)<<"c"<<setw(14)<<"f(c)"<<setw(14)<<"|a-b|"<<endl;
+cout <<"--------------------------------------------------------------------------------";
+while(fabs(a-b) >= 0.00001  ){
+
+
+ c = (a + b) / 2.0 ;
+ iter++;
+cout <<iter<<setw(14)<<a<<setw(14)<<b<<setw(14)<<c<<setw(14)<<f(c)<<setw(14)<<fabs(a-b)<<endl;
+if(f(c) == 0) {cout << " the root of the equation is : " << c ;}
+if(f(a)*f(c)<0){
+    b = c;
+}
+else if(f(a)*f(c)>0){
+    a = c;
+}
+
+}
+}
+cout << " the root of the equation is : " << c ;
+return 0;
+
+}
