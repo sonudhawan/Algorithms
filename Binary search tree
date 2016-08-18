@@ -1,0 +1,128 @@
+#include <iostream>
+#include <windows.h>
+using namespace std;
+
+struct node{
+int data;
+node* left;
+node* right;
+};
+
+node* new_node(int data){
+node* node_x  = new node();
+node_x->data  = data;
+node_x->left  = NULL;
+node_x->right = NULL;
+return node_x;
+}
+
+node* bst(node* root, int data){
+
+if(root == NULL){
+    root = new_node(data);
+}
+
+else if(data <=root->data){
+root->left = bst(root->left,data);
+}
+
+else {
+root->right = bst(root->right,data);
+}
+return root;
+
+}
+
+bool search(node* root , int data){
+
+if(root == NULL){
+    return false;
+}
+else if(data == root->data ){
+    return true;
+}
+else if(data <= root->data )
+{
+    return search(root->left,data);
+}
+else{
+    return search(root->right,data);
+}
+}
+
+void display_in(node* root){
+
+
+if(root != NULL){
+
+     display_in(root->left);
+     cout << root->data << "-" <<endl ;
+     display_in(root->right);
+
+}
+
+
+}
+void display_post(node* root){
+
+
+if(root != NULL){
+
+     display_post(root->left);
+     display_post(root->right);
+     cout << root->data << "-" <<endl ;
+
+}
+
+
+}
+void display_pre(node* root){
+if(root != NULL){
+    cout << root->data << "-" <<endl ;
+    display_pre(root->left);
+    display_pre(root->right);
+
+}
+
+
+}
+
+int main(){
+
+node* root = NULL;
+
+jump:
+cout<<"1 : Insert     element "<<endl;
+cout<<"2 : search    element "<<endl;
+cout<<"3 : in-order   display "<<endl;
+cout<<"4 : pre-order  display "<<endl;
+cout<<"5 : post-order display "<<endl;
+
+int goal,join,search_key;
+
+cout << "Enter no to proceed";
+cin  >> join;
+switch(join){
+case 1 : cout<<"Enter element ?";
+        cin >> goal;
+        root = bst(root,goal);
+         system("cls");
+         goto jump;
+case 2 : cout<<"Enter key to search";
+         cin >> search_key;
+         (search(root,search_key) == false)?cout<<"Not found"<<endl:cout<<"Found"<<endl;
+
+         goto jump;
+
+case 3 : display_in(root);
+         goto jump;
+case 4 : display_pre(root);
+          goto jump;
+case 5 : display_post(root);
+          goto jump;
+}
+
+return 0;
+
+}
+
