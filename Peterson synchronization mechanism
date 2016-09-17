@@ -1,0 +1,39 @@
+// peter-son synchronization mechanism to work with up to 2 processes.
+
+#include <iostream>
+#define N 2
+#define true 1
+#define false 0
+
+int in[N] = { false , false };
+int turn;
+
+void entry(int process){
+    
+
+int other;
+other = 1 - process;
+in[process] = true;
+turn = process;
+
+while(in[other] == true && turn == process );
+
+}
+void exit(int process){
+
+in[process] = false;
+
+}
+
+// driver program to test peter-son synchronization mechanism
+int main(){
+
+
+entry(0); // process P0 Active.
+exit(0);  // process P0 leaves
+ 
+/*
+entry(0); entry(1); this CODE take process P1 to move in loop unless P1 don't exit. 
+*/ 
+return 0;
+}
